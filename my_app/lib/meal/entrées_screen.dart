@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:my_app/screens/home_screen.dart';
-import 'package:my_app/appbar/bottom_navigation_bar.dart';
 import 'package:my_app/receipts/crêpes_receipts_screen.dart';
 
 class EntreesPage extends StatefulWidget {
@@ -25,7 +25,6 @@ class _EntreesPageState extends State<EntreesPage> {
             textStyle: Theme.of(context).textTheme.headline4,
             fontSize: 12,
             fontWeight: FontWeight.w700,
-            //fontStyle: FontStyle.italic,
           ),
         ),
         elevation: 0,
@@ -33,8 +32,6 @@ class _EntreesPageState extends State<EntreesPage> {
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
-            /*Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Navigation()));*/
           },
         ),
       ),
@@ -52,7 +49,6 @@ class _EntreesPageState extends State<EntreesPage> {
                   width: 600,
                   height: 300,
                   decoration: BoxDecoration(
-                    //borderRadius: BorderRadius.all(Radius.circular(300.0)),
                     image: DecorationImage(
                         image: AssetImage("images/first_meal.png"),
                         fit: BoxFit.cover),
@@ -63,7 +59,33 @@ class _EntreesPageState extends State<EntreesPage> {
               SizedBox(
                 height: 30,
               ),
-              recipeItem(),
+              StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('recettes')
+                    .snapshots(),
+                builder:
+                  (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshots) {
+                    if (!snapshots.hasData || snapshots.data == null)
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    print(snapshots.data!.docs);
+                    List <Map<String, dynamic>> list;
+                    return GridView.builder(
+                      physics: ScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: (.75),
+                      ),
+                      itemCount: snapshots.data!.docs.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return recipeItem(
+                      );
+                    }
+                  );
+                },
+              ),
             ],
           ),
         ),
