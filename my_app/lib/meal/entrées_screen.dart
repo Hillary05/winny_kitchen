@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:my_app/screens/home_screen.dart';
-import 'package:my_app/receipts/crêpes_receipts_screen.dart';
+import 'package:my_app/models/user_receipt.dart';
+import 'package:my_app/receipts/Allreceipts_screen.dart';
 
 class EntreesPage extends StatefulWidget {
   @override
@@ -61,16 +61,19 @@ class _EntreesPageState extends State<EntreesPage> {
               ),
               StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('recettes')
+                    .collection('recettes').where('type', isEqualTo: 'Entrée')
                     .snapshots(),
                 builder:
-                  (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshots) {
+                  (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>  snapshots) {
                     if (!snapshots.hasData || snapshots.data == null)
                       return Center(
                         child: CircularProgressIndicator(),
                       );
-                    print(snapshots.data!.docs);
-                    List <Map<String, dynamic>> list;
+                    //print(snapshots.data!.docs);
+                    List <ModelRecipe> list = List.generate(snapshots.data!.docs.length, (index) {
+                      QueryDocumentSnapshot<Map<String, dynamic>> doc = snapshots.data!.docs[index];
+                      return ModelRecipe.fromQueryDocumentSnapshot(doc);
+                    });
                     return GridView.builder(
                       physics: ScrollPhysics(),
                       shrinkWrap: true,
@@ -78,10 +81,9 @@ class _EntreesPageState extends State<EntreesPage> {
                         crossAxisCount: 3,
                         childAspectRatio: (.75),
                       ),
-                      itemCount: snapshots.data!.docs.length,
+                      itemCount: list.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return recipeItem(
-                      );
+                        return recipeItem(list[index]);
                     }
                   );
                 },
@@ -93,13 +95,13 @@ class _EntreesPageState extends State<EntreesPage> {
     );
   }
 
-  Widget recipeItem() {
+  Widget recipeItem(ModelRecipe recipe) {
     return Column(
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CrepesReceipt()));
+             Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AllReceipt(recipe: recipe)));
           },
           child: Container(
             height: 100.0,
@@ -120,7 +122,7 @@ class _EntreesPageState extends State<EntreesPage> {
           ),
         ),
         Text(
-          "Crêpes\nfarcies",
+          recipe.title,
           style: TextStyle(
             fontSize: 16.0,
             fontFamily: 'Raleway',

@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/meal/entrées_screen.dart';
+import 'package:my_app/models/user_receipt.dart';
 import 'package:my_app/widget/like_button_widget.dart';
 
-class CrepesReceipt extends StatefulWidget {
+class AllReceipt extends StatefulWidget {
+  final ModelRecipe recipe;
+  const AllReceipt({Key? key, required this.recipe}) : super(key: key);
   @override
-  _CrepesReceiptState createState() => _CrepesReceiptState();
+  _AllReceiptState createState() => _AllReceiptState();
 }
 
-class _CrepesReceiptState extends State<CrepesReceipt> {
+class _AllReceiptState extends State<AllReceipt> {
+  bool isliked = false;
+
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+   // double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xFFEDECF2),
-      appBar:AppBar(
+      appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
         title: Text(
@@ -32,13 +36,11 @@ class _CrepesReceiptState extends State<CrepesReceipt> {
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
-            /*Navigator.push(context,
-              MaterialPageRoute(builder: (context) => EntreesPage()));*/
           },
         ),
       ),
       body: SingleChildScrollView(
-         child: Container(
+        child: Container(
           margin: EdgeInsets.symmetric(
             vertical: 50,
             horizontal: 20,
@@ -48,49 +50,70 @@ class _CrepesReceiptState extends State<CrepesReceipt> {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Recette de crêpes farcies",
-                  style: TextStyle (
+                  widget.recipe.title,
+                  style: TextStyle(
                     fontSize: 25.0,
                     fontFamily: 'Raleway',
                     color: Colors.blueGrey.shade500,
                   ),
                 ),
               ),
-              SizedBox(height:20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Image.asset('images/ingredients_two.png',
-                    width: 30.0,
-                    height: 30.0,
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    "Ingrédients pour 10 personnes",
-                    style: TextStyle (
+              SizedBox(height: 20),
+              Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Image.asset(
+                  'images/ingredients_two.png',
+                  width: 30.0,
+                  height: 30.0,
+                ),
+                SizedBox(width: 10),
+                Text(
+                  "Ingrédients",
+                  style: TextStyle(
                     fontSize: 17.0,
                     fontFamily: 'Raleway',
                     color: Colors.black87,
-                    ),
                   ),
-                ]
-              ),
+                ),
+              ]),
               SizedBox(height: 20),
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "200g de farine\nun demi litre de lait\n2 cuillères à soupe d'huile\n2 oeufs\n1 sachet de levure chimique\nune pincée de sel",
-                  style: TextStyle (
+                  widget.recipe.ingredients,
+                  style: TextStyle(
                     fontSize: 16.0,
                     fontFamily: 'Raleway',
                     color: Colors.grey,
                   ),
                 ),
               ),
-              /*SizedBox(
-                height: height,
-                child: LikeButtonWidget(),
-              )*/
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "La recette",
+                style: TextStyle(
+                  fontSize: 17.0,
+                  fontFamily: 'Raleway',
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(width: 10),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  widget.recipe.recipe,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontFamily: 'Raleway',
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              LikeButtonWidget(),
             ],
           ),
         ),

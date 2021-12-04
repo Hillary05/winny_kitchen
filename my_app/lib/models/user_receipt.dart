@@ -1,20 +1,29 @@
-class UserModelReceipt {
-  String? receipt;
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class ModelRecipe {
+  final String title;
+  final String ingredients;
+  final String recipe;
+  final String type;
+  final String id;
 
 
-  UserModelReceipt({this.receipt});
+  ModelRecipe({
+    required this.title,
+    required this.ingredients,
+    required this.recipe,
+    required this.type,
+    required this.id,
+  });
 
-  // receeiving data from server
-  factory UserModelReceipt.fromMap(map) {
-    return UserModelReceipt(
-      receipt: map['receipt'],
+  factory ModelRecipe.fromQueryDocumentSnapshot(QueryDocumentSnapshot doc) {
+    Map<String, dynamic> map = doc.data() as Map<String, dynamic>;
+    return ModelRecipe(
+      title: map['title'],
+      ingredients: map['ingredients'],
+      recipe: map['recipe'],
+      type: map['type'],
+      id: doc.id,
     );
-  }
-
-  // sending data to our server
-  Map<String , dynamic> toMap() {
-    return {
-      'receipt': receipt,
-    };
   }
 }
