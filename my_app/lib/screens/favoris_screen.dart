@@ -12,7 +12,7 @@ class _FavorisPageState extends State<FavorisPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEDECF2),
-      appBar:AppBar(
+      appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
         title: Text(
@@ -29,8 +29,7 @@ class _FavorisPageState extends State<FavorisPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Navigation()));
+            Navigator.pop(context);
           },
         ),
       ),

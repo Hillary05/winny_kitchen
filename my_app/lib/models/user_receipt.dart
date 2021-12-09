@@ -6,6 +6,7 @@ class ModelRecipe {
   final String recipe;
   final String type;
   final String id;
+  final DocumentReference reference;
 
 
   ModelRecipe({
@@ -14,6 +15,7 @@ class ModelRecipe {
     required this.recipe,
     required this.type,
     required this.id,
+    required this.reference,
   });
 
   factory ModelRecipe.fromQueryDocumentSnapshot(QueryDocumentSnapshot doc) {
@@ -24,6 +26,7 @@ class ModelRecipe {
       recipe: map['recipe'],
       type: map['type'],
       id: doc.id,
+      reference: doc.reference,
     );
   }
 }

@@ -37,7 +37,7 @@ class _NavigationState extends State<Navigation> {
             label: 'Accueil',
             backgroundColor: Colors.amber,
           ),
-            BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: 'Favoris',
             backgroundColor: Colors.green,

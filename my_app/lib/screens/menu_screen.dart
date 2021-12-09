@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/appbar/bottom_navigation_bar.dart';
@@ -96,33 +97,6 @@ class _MenuPageState extends State<MenuPage> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: defaultSize+2, vertical: defaultSize+3),
                   child: Row(
-                    children: [
-                      Image.asset('images/log_out.png',
-                        width: 20.0,
-                        height: 20.0,
-                      ),
-                      SizedBox(width: defaultSize * 2),
-                      Text(
-                        'Notifications',
-                        style: TextStyle(
-                          fontSize: defaultSize * 1.6,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                      Spacer(),
-                    Icon(
-                      Icons.arrow_forward_ios, size: defaultSize * 1.6,
-                      color: Colors.black87,
-                      ),
-                    ]
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: defaultSize+2, vertical: defaultSize+3),
-                  child: Row(
                   children: [
                     Image.asset('images/settings.png',
                         width: 20.0,
@@ -137,6 +111,35 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                     ),
                     Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios, size: defaultSize * 1.6,
+                      color: Colors.black87,
+                      ),
+                    ]
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: defaultSize+2, vertical: defaultSize+3),
+                  child: Row(
+                    children: [
+                      Image.asset('images/log_out.png',
+                        width: 20.0,
+                        height: 20.0,
+                      ),
+                      SizedBox(width: defaultSize * 2),
+                      Text(
+                        'Logout',
+                        style: TextStyle(
+                          fontSize: defaultSize * 1.6,
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                      Spacer(),
                     Icon(
                       Icons.arrow_forward_ios, size: defaultSize * 1.6,
                       color: Colors.black87,

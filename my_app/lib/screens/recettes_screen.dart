@@ -49,10 +49,11 @@ class _RecettesPageState extends State<RecettesPage> {
               .snapshots(),
           builder: (context,
               AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshots) {
-            if (!snapshots.hasData)
+            if (!snapshots.hasData || snapshots.data == null || snapshots.data!.data() == null) {
               return Center(
                 child: CircularProgressIndicator(),
               );
+            }
             List? list = snapshots.data!.data()!['notes'];
             if (list == null) return Container();
             return SizedBox(

@@ -113,7 +113,7 @@ class _AllReceiptState extends State<AllReceipt> {
               SizedBox(
                 height: 20,
               ),
-              LikeButtonWidget(),
+              LikeButtonWidget(reference: widget.recipe.reference,),
             ],
           ),
         ),

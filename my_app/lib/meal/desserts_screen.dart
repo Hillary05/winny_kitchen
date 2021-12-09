@@ -57,7 +57,7 @@ class _DessertsPageState extends State<DessertsPage> {
               ),
               StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('recettes').where('type', isEqualTo: 'Dessert')
+                    .collection('recettes').where('type', isEqualTo: 'dessert')
                     .snapshots(),
                 builder:
                   (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>  snapshots) {

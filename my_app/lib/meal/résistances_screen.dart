@@ -61,7 +61,7 @@ class _ResistancesPageState extends State<ResistancesPage> {
               ),
               StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('recettes').where('type', isEqualTo: 'résistances')
+                    .collection('recettes').where('type', isEqualTo: 'résistance')
                     .snapshots(),
                 builder:
                   (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>  snapshots) {

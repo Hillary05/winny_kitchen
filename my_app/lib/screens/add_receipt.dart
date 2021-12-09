@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/screens/recettes_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AddNote extends StatefulWidget {
@@ -170,6 +169,7 @@ class _AddNoteState extends State<AddNote> {
         }
       ]),
     };
-    FirebaseFirestore.instance.collection('notes').doc(user!.uid).update(data);
+    print(user!.uid);
+    FirebaseFirestore.instance.collection('notes').doc(user.uid).update(data);
   }
 }

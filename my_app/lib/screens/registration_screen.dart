@@ -8,31 +8,27 @@ import 'package:my_app/models/user_model.dart';
 import 'package:provider/provider.dart';
 import 'package:my_app/controllers/login_controller.dart';
 
-
-
 class RegistrationScreen extends StatefulWidget {
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-
   //creating a function loginUI
-  loginUI () {
+  loginUI() {
     return Consumer<LoginController>(builder: (context, model, child) {
       //if we are already logged in
       if (model.userDetails != null) {
-        return Center (
+        return Center(
           child: loggedInUI(model),
         );
       } else {
         return loginControllers(context);
       }
-    });   
+    });
   }
 
-  loggedInUI(LoginController model)
-  {
+  loggedInUI(LoginController model) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +36,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       //our ui will have three children , name, email, photo, logout button
       children: [
         CircleAvatar(
-          backgroundImage: Image.network(model.userDetails!.photoURL ?? "").image,
+          backgroundImage:
+              Image.network(model.userDetails!.photoURL ?? "").image,
           radius: 50,
         ),
 
@@ -49,19 +46,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
         //logout
         ActionChip(
-          avatar: Icon(Icons.logout),
-          label: Text("Logout"),
-          onPressed: () {
-            Provider.of<LoginController>(context,listen: false).logout();
-          }
-        ), 
+            avatar: Icon(Icons.logout),
+            label: Text("Logout"),
+            onPressed: () {
+              Provider.of<LoginController>(context, listen: false).logout();
+            }),
       ],
     );
   }
 
-
-  loginControllers(BuildContext context)
-  {
+  loginControllers(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +66,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             onTap: () {
               Provider.of<LoginController>(context, listen: false)
-                .googleLogin();
+                  .googleLogin();
             },
           ),
         ],
@@ -80,35 +74,40 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
+  //late final FirebaseAuth _auth;
   final _auth = FirebaseAuth.instance;
 
   // form key
   final _formKey = GlobalKey<FormState>();
 
   // editing Controller
-  final TextEditingController firstNameEditingController = new TextEditingController();
-  final TextEditingController secondNameEditingController = new TextEditingController();
-  final TextEditingController emailEditingController = new TextEditingController();
-  final TextEditingController passwordEditingController = new TextEditingController();
-  final TextEditingController confirmPasswordEditingController = new TextEditingController();
-  
+  final TextEditingController firstNameEditingController =
+      new TextEditingController(text: 'sean');
+  final TextEditingController secondNameEditingController =
+      new TextEditingController(text: 'hillary');
+  final TextEditingController emailEditingController =
+      new TextEditingController(text: 'kerekouhillary@gmail.com');
+  final TextEditingController passwordEditingController =
+      new TextEditingController(text: '333333');
+  final TextEditingController confirmPasswordEditingController =
+      new TextEditingController(text: '333333');
+
   @override
   Widget build(BuildContext context) {
-
     // first name field
-    final  firstNameField = TextFormField(
+    final firstNameField = TextFormField(
       autofocus: false,
       controller: firstNameEditingController,
       keyboardType: TextInputType.name,
       // validator
       validator: (value) {
-         RegExp regexp = new RegExp(r'.{3,}$');
+        RegExp regexp = new RegExp(r'.{3,}$');
         if (value!.isEmpty) {
           return ('Firstname cannot be empty');
         }
 
-        if(!regexp.hasMatch(value)) {
-            return("Please enter a valid name(at least three characters)");
+        if (!regexp.hasMatch(value)) {
+          return ("Please enter a valid name(at least three characters)");
         }
         return null;
       },
@@ -118,7 +117,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         labelText: 'Enter your firstName',
-        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         prefixIcon: Icon(
           Icons.account_circle,
           color: Colors.black,
@@ -127,12 +127,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
 
     // second name field
-    final  secondNameField = TextFormField(
+    final secondNameField = TextFormField(
       autofocus: false,
       controller: secondNameEditingController,
       keyboardType: TextInputType.name,
       // validator
-       validator: (value) {
+      validator: (value) {
         if (value!.isEmpty) {
           return ('Second Name cannot be empty');
         }
@@ -144,7 +144,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         labelText: 'Enter your secondName',
-        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         prefixIcon: Icon(
           Icons.account_circle,
           color: Colors.black,
@@ -153,7 +154,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
 
     // email field
-    final  emailField = TextFormField(
+    final emailField = TextFormField(
       autofocus: false,
       controller: emailEditingController,
       keyboardType: TextInputType.emailAddress,
@@ -163,9 +164,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           return ('Please enter your email adress');
         }
 
-        if(!RegExp("^[a-z0-9](\.?[a-z0-9]){5,}@gmail\.com")
-          .hasMatch(value)) {
-            return("Please enter a valid email");
+        if (!RegExp("^[a-z0-9](\.?[a-z0-9]){5,}@gmail\.com").hasMatch(value)) {
+          return ("Please enter a valid email");
         }
         return null;
       },
@@ -175,7 +175,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         labelText: 'Enter your email adress',
-        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         prefixIcon: Icon(
           Icons.mail,
           color: Colors.black,
@@ -184,19 +185,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
 
     // password field
-    final  passwordField = TextFormField(
+    final passwordField = TextFormField(
       autofocus: false,
       controller: passwordEditingController,
       obscureText: true,
       // validator
       validator: (value) {
-         RegExp regexp = new RegExp(r'.{6,}$');
+        RegExp regexp = new RegExp(r'.{6,}$');
         if (value!.isEmpty) {
           return ('Password is required for login');
         }
 
-        if(!regexp.hasMatch(value)) {
-            return("Please enter a valid password(at least six characters");
+        if (!regexp.hasMatch(value)) {
+          return ("Please enter a valid password(at least six characters");
         }
         return null;
       },
@@ -206,7 +207,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         labelText: 'Enter your password',
-        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         prefixIcon: Icon(
           Icons.vpn_key,
           color: Colors.black,
@@ -215,7 +217,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
 
     // confirm password field
-    final  confirmPasswordField = TextFormField(
+    final confirmPasswordField = TextFormField(
       autofocus: false,
       controller: confirmPasswordEditingController,
       obscureText: true,
@@ -223,9 +225,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       validator: (value) {
         if (confirmPasswordEditingController.text !=
             passwordEditingController.text) {
-              return "Password don't match";
-          }
-          return null;
+          return "Password don't match";
+        }
+        return null;
       },
       onSaved: (value) {
         confirmPasswordEditingController.text = value!;
@@ -233,14 +235,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
         labelText: 'Enter your password',
-        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         prefixIcon: Icon(
           Icons.vpn_key,
           color: Colors.black,
         ),
       ),
     );
-    
+
     // sign up button
     final signUpButton = Material(
       elevation: 0,
@@ -250,10 +253,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
-          signUp(emailEditingController.text, passwordEditingController.text);
           if (_formKey.currentState!.validate()) {
-            Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Navigation()));
+            signUp(emailEditingController.text, passwordEditingController.text);
           }
         },
         child: Text(
@@ -269,7 +270,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade100,//Color(0xFFEDECF2),
+      backgroundColor: Colors.blueGrey.shade100, //Color(0xFFEDECF2),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -323,13 +324,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   //signUp function
-  void signUp(String email, String password) async
-  {
-  if (_formKey.currentState!.validate()) {
-    await _auth
-      .createUserWithEmailAndPassword(email: email, password: password)
-      .then((value) => {postDetailsToFirestore()})
-      .catchError((e) {
+  void signUp(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) {
+        postDetailsToFirestore();
+        Map<String, dynamic> data = {
+          'notes': [],
+        };
+        FirebaseFirestore.instance
+            .collection('notes')
+            .doc(value.user!.uid)
+            .set(data);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Navigation()),
+        );
+      }).catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
       });
     }
@@ -352,10 +364,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.password = passwordEditingController.text;
 
     await firebaseFirestore
-      .collection("users")
-      .doc(user.uid)
-      .set(userModel.toMap());
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap());
     Fluttertoast.showToast(msg: "Account create successfully :) ");
   }
-
 }
