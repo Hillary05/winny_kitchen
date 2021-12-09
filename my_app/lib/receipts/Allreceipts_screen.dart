@@ -57,29 +57,26 @@ class _AllReceiptState extends State<AllReceipt> {
                   widget.recipe.title,
                   style: TextStyle(
                     fontSize: 25.0,
-                    fontFamily: 'Raleway',
-                    color: Colors.blueGrey.shade500,
+                    fontFamily: 'RobotoMono',
+                    color: Colors.blueGrey.shade200,
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                Image.asset(
-                  'images/ingredients_two.png',
-                  width: 30.0,
-                  height: 30.0,
-                ),
+                Icon(Icons.receipt_long_rounded, color: Colors.orange.shade800),
                 SizedBox(width: 10),
                 Text(
                   "Ingrédients",
                   style: TextStyle(
-                    fontSize: 17.0,
+                    fontSize: 20.0,
                     fontFamily: 'Raleway',
+                    fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
                 ),
               ]),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
@@ -91,18 +88,21 @@ class _AllReceiptState extends State<AllReceipt> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "La recette",
-                style: TextStyle(
-                  fontSize: 17.0,
-                  fontFamily: 'Raleway',
-                  color: Colors.black87,
+              SizedBox(height: 40,),
+              Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Icon(Icons.receipt_long_rounded, color: Colors.orange.shade800),
+                SizedBox(width: 10),
+                Text(
+                  "La recette",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
                 ),
-              ),
-              SizedBox(width: 10),
+              ]),
+              SizedBox(height: 30,),
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
@@ -114,9 +114,7 @@ class _AllReceiptState extends State<AllReceipt> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20,),
               if (widget.canLike)
                 LikeButtonWidget(
                   reference: widget.recipe.reference,

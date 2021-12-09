@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_app/appbar/bottom_navigation_bar.dart';
 import 'package:my_app/controllers/login_controller.dart';
 import 'package:my_app/models/user_model.dart';
+import 'package:my_app/screens/first_page.dart';
 //import 'package:my_app/screens/login_page.dart';
 import 'package:provider/provider.dart';
 
@@ -312,7 +313,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(height: 45),
                     signUpButton,
                     SizedBox(height: 25),
-                    loginUI(),
+                    //loginUI(),
                   ],
                 ),
               ),
