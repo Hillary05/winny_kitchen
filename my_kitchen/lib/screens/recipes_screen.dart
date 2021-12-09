@@ -7,14 +7,14 @@ class RecipesPage extends StatefulWidget {
 }
 
 class _RecipesPageState extends State<RecipesPage> {
-   // editing Controller
+  // editing Controller
   final TextEditingController titleEditingController =
       new TextEditingController();
   final TextEditingController ingredientsEditingController =
       new TextEditingController();
   final TextEditingController recipeEditingController =
       new TextEditingController();
-   final TextEditingController typeEditingController =
+  final TextEditingController typeEditingController =
       new TextEditingController();
 
   // form key
@@ -32,7 +32,6 @@ class _RecipesPageState extends State<RecipesPage> {
 
   @override
   Widget build(BuildContext context) {
-
     final sendButton = Material(
       elevation: 0,
       borderRadius: BorderRadius.circular(30),
@@ -55,26 +54,12 @@ class _RecipesPageState extends State<RecipesPage> {
       ),
     );
 
-     return Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xFFEDECF2),
-      /*appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        title: Text(
-          "Recipe add",
-          textAlign: TextAlign.center,
-          style: GoogleFonts.raleway(
-            textStyle: Theme.of(context).textTheme.headline4,
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            //fontStyle: FontStyle.italic,
-          ),
-        ),
-      ),*/
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            child: Padding(
+              child: Padding(
             padding: const EdgeInsets.all(36.0),
             child: Form(
               key: _formKey,
@@ -84,8 +69,10 @@ class _RecipesPageState extends State<RecipesPage> {
                 children: [
                   TextFormField(
                     autofocus: false,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                     controller: titleEditingController,
-                    keyboardType: TextInputType.name,
+                    //keyboardType: TextInputType.name,
                     // validator
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -97,16 +84,19 @@ class _RecipesPageState extends State<RecipesPage> {
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       labelText: 'Title',
-                      border: OutlineInputBorder(
-                        borderRadius:
-                          BorderRadius.all(Radius.circular(20.0))),
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
                     ),
                   ),
                   SizedBox(height: 30),
                   TextFormField(
                     autofocus: false,
                     controller: ingredientsEditingController,
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                     // validator
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -117,18 +107,20 @@ class _RecipesPageState extends State<RecipesPage> {
                     onSaved: (value) {},
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                      labelText: 'ingredients',
-                      border: OutlineInputBorder(
-                        borderRadius:
-                          BorderRadius.all(Radius.circular(20.0))),
-                      focusColor: Colors.black,
+                      labelText: 'Ingredients',
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
                     ),
                   ),
                   SizedBox(height: 30),
                   TextFormField(
                     autofocus: false,
                     controller: recipeEditingController,
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                     // validator
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -139,17 +131,20 @@ class _RecipesPageState extends State<RecipesPage> {
                     onSaved: (value) {},
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                      labelText: 'recipe',
-                      border: OutlineInputBorder(
-                        borderRadius:
-                          BorderRadius.all(Radius.circular(20.0))),
+                      labelText: 'Recipe',
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
                     ),
                   ),
                   SizedBox(height: 30),
                   TextFormField(
                     autofocus: false,
                     controller: typeEditingController,
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                     // validator
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -161,9 +156,11 @@ class _RecipesPageState extends State<RecipesPage> {
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       labelText: 'category',
-                      border: OutlineInputBorder(
-                        borderRadius:
-                          BorderRadius.all(Radius.circular(20.0))),
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
                     ),
                   ),
                   SizedBox(height: 30),
@@ -184,13 +181,16 @@ class _RecipesPageState extends State<RecipesPage> {
     String type = typeEditingController.text;
 
     Map<String, dynamic> map = {
-      'title':  title,
-      'ingredients':  ingredients,
-      'recipe':  recipe,
-      'type':  type,
+      'title': title,
+      'ingredients': ingredients,
+      'recipe': recipe,
+      'type': type,
     };
-    FirebaseFirestore.instance.collection('recettes').doc().set(map)
-    .then((value) {
+    FirebaseFirestore.instance
+        .collection('recettes')
+        .doc()
+        .set(map)
+        .then((value) {
       titleEditingController.clear();
       ingredientsEditingController.clear();
       recipeEditingController.clear();

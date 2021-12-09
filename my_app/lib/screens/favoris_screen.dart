@@ -58,17 +58,20 @@ class _FavorisPageState extends State<FavorisPage> {
         ),*/
       ),
       body: SingleChildScrollView(
-        child: GridView.builder(
-          physics: ScrollPhysics(),
-          shrinkWrap: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            childAspectRatio: (.75),
-          ),
-          itemCount: recipes.length,
-          itemBuilder: (BuildContext context, int index) {
-            return RecipeItem(recipe: recipes[index], canLike: false,);
-          },
+        child: Container(
+          child: GridView.builder(
+              physics: ScrollPhysics(),
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: (.65),
+                mainAxisSpacing: 20.0,
+                crossAxisSpacing: 10.0,
+              ),
+              itemCount: recipes.length,
+              itemBuilder: (BuildContext context, int index) {
+                return RecipeItem(recipe: recipes[index]);
+              }),
         ),
       ),
     );

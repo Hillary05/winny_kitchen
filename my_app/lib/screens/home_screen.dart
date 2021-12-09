@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/meal/Recipes.dart';
 import 'package:my_app/meal/desserts_screen.dart';
 import 'package:my_app/meal/entrées_screen.dart';
 import 'package:my_app/meal/résistances_screen.dart';
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => EntreesPage()));
+                      MaterialPageRoute(builder: (context) => RecipesPage(category: 'entrée',)));
                 },
                 child: Container(
                   height: 150.0,
@@ -105,8 +106,7 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => ResistancesPage()));
+                      MaterialPageRoute(builder: (context) => RecipesPage(category: 'résistance',)));
                 },
                 child: Container(
                   height: 150.0,
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DessertsPage()));
+                      MaterialPageRoute(builder: (context) => RecipesPage(category: 'dessert',)));
                 },
                 child: Container(
                   height: 150.0,

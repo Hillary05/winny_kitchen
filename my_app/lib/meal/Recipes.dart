@@ -4,12 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/models/user_receipt.dart';
 import 'package:my_app/receipts/Allreceipts_screen.dart';
 
-class EntreesPage extends StatefulWidget {
+class RecipesPage extends StatefulWidget {
+  final String category;
+
+  const RecipesPage({Key? key, required this.category}) : super(key: key);
   @override
-  _EntreesPageState createState() => _EntreesPageState();
+  _RecipesPageState createState() => _RecipesPageState();
 }
 
-class _EntreesPageState extends State<EntreesPage> {
+class _RecipesPageState extends State<RecipesPage> {
   @override
   Widget build(BuildContext context) {
     //double? defaultSize = SizeConfig.defaultSize;
@@ -19,7 +22,7 @@ class _EntreesPageState extends State<EntreesPage> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         title: Text(
-          "Entrées",
+          widget.category.toUpperCase()[0] + widget.category.substring(1) + 's',
           textAlign: TextAlign.center,
           style: GoogleFonts.raleway(
             textStyle: Theme.of(context).textTheme.headline4,
@@ -40,7 +43,7 @@ class _EntreesPageState extends State<EntreesPage> {
           child: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('recettes')
-                .where('type', isEqualTo: 'Entrée')
+                .where('type', isEqualTo: widget.category)
                 .snapshots(),
             builder: (BuildContext context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshots) {
@@ -50,9 +53,9 @@ class _EntreesPageState extends State<EntreesPage> {
                 );
               //print(snapshots.data!.docs);
               List<ModelRecipe> list =
-                  List.generate(snapshots.data!.docs.length, (index) {
+              List.generate(snapshots.data!.docs.length, (index) {
                 QueryDocumentSnapshot<Map<String, dynamic>> doc =
-                    snapshots.data!.docs[index];
+                snapshots.data!.docs[index];
                 return ModelRecipe.fromQueryDocumentSnapshot(doc);
               });
               return GridView.builder(

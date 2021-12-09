@@ -78,7 +78,7 @@ class _DessertsPageState extends State<DessertsPage> {
                       physics: ScrollPhysics(),
                       shrinkWrap: true,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: 2,
                         childAspectRatio: (.75),
                       ),
                       itemCount: list.length,

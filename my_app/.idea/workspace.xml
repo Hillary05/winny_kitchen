@@ -5,42 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cbdbb41-35cc-48cf-ac36-e3a6879cb192" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/meal/Recipes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/appbar/bottom_navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/appbar/bottom_navigation_bar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/constant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constant.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/controllers/google_signIn_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/google_signIn_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/controllers/login_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/login_controller.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/meal/desserts_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/meal/desserts_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/meal/entrées_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/meal/entrées_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/meal/résistances_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/meal/résistances_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/onboard_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/onboard_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/user_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user_details.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/user_receipt.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user_receipt.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/receipts/Allreceipts_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/receipts/Allreceipts_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/add_receipt.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/add_receipt.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/edit_receipt.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/edit_receipt.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/favoris_name_screen.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/favoris_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/favoris_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/first_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/first_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/menu_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/menu_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/onboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/onboard_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/profil_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/profil_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/recettes_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/recettes_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/registration_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/registration_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/size_config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/size_config.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/like_button_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/like_button_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../my_kitchen/lib/screens/recipes_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../my_kitchen/lib/screens/recipes_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -97,7 +83,7 @@
       <updated>1638622931632</updated>
       <workItem from="1638622933512" duration="607000" />
       <workItem from="1638785394770" duration="80000" />
-      <workItem from="1639064442399" duration="3312000" />
+      <workItem from="1639064442399" duration="6813000" />
     </task>
     <servers />
   </component>
@@ -109,5 +95,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
