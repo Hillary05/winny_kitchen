@@ -8,7 +8,6 @@ class ModelRecipe {
   final String id;
   final DocumentReference reference;
 
-
   ModelRecipe({
     required this.title,
     required this.ingredients,
@@ -18,7 +17,7 @@ class ModelRecipe {
     required this.reference,
   });
 
-  factory ModelRecipe.fromQueryDocumentSnapshot(QueryDocumentSnapshot doc) {
+  factory ModelRecipe.fromQueryDocumentSnapshot(dynamic doc) {
     Map<String, dynamic> map = doc.data() as Map<String, dynamic>;
     return ModelRecipe(
       title: map['title'],

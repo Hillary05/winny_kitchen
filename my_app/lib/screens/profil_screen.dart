@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/models/user_model.dart';
 import 'package:my_app/screens/menu_screen.dart';
@@ -11,7 +11,6 @@ class ProfilPage extends StatefulWidget {
 }
 
 class _ProfilPageState extends State<ProfilPage> {
-
   //editing controller
   final TextEditingController firstNameEditingController =
       TextEditingController();
@@ -26,7 +25,7 @@ class _ProfilPageState extends State<ProfilPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
- /* void initState() {
+  void initState() {
     final _auth = FirebaseAuth.instance;
     User? user = _auth.currentUser;
     FirebaseFirestore.instance
@@ -43,11 +42,10 @@ class _ProfilPageState extends State<ProfilPage> {
       setState(() {});
     });
     super.initState();
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
-
     // sign up button
     final editButton = Material(
       elevation: 0,
@@ -57,9 +55,9 @@ class _ProfilPageState extends State<ProfilPage> {
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
-         if (_formKey.currentState!.validate()) {
-                edit();
-              }
+          if (_formKey.currentState!.validate()) {
+            edit();
+          }
         },
         child: Text(
           'Edit',
@@ -104,60 +102,60 @@ class _ProfilPageState extends State<ProfilPage> {
               child: Form(
                 key: _formKey,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    TextFormField(
-                      autofocus: false,
-                      controller: firstNameEditingController,
-                      keyboardType: TextInputType.name,
-                      // validator
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return ('Firstname cannot be empty');
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TextFormField(
+                        autofocus: false,
+                        controller: firstNameEditingController,
+                        keyboardType: TextInputType.name,
+                        // validator
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return ('Firstname cannot be empty');
                           }
                           return null;
                         },
-                      onSaved: (value) {},
-                      textInputAction: TextInputAction.next,
-                      decoration: InputDecoration(
-                        labelText: 'Enter your firstName',
-                        border: OutlineInputBorder(
-                        borderRadius:
-                          BorderRadius.all(Radius.circular(20.0))),
+                        onSaved: (value) {},
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          labelText: 'Enter your firstName',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
                           prefixIcon: Icon(
                             Icons.account_circle,
                             color: Colors.black,
                           ),
                         ),
                       ),
-                    SizedBox(height: 45),
-                    TextFormField(
-                      autofocus: false,
-                      controller: secondNameEditingController,
-                      keyboardType: TextInputType.name,
-                      // validator
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return ('Second Name cannot be empty');
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {},
-                      textInputAction: TextInputAction.next,
-                      decoration: InputDecoration(
-                        labelText: 'Enter your secondName',
-                        border: OutlineInputBorder(
-                            borderRadius:
-                              BorderRadius.all(Radius.circular(20.0))),
-                            prefixIcon: Icon(
-                              Icons.account_circle,
-                              color: Colors.black,
+                      SizedBox(height: 45),
+                      TextFormField(
+                        autofocus: false,
+                        controller: secondNameEditingController,
+                        keyboardType: TextInputType.name,
+                        // validator
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return ('Second Name cannot be empty');
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {},
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          labelText: 'Enter your secondName',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                          prefixIcon: Icon(
+                            Icons.account_circle,
+                            color: Colors.black,
                           ),
                         ),
                       ),
-                    SizedBox(height: 45),
-                    TextFormField(
+                      SizedBox(height: 45),
+                      TextFormField(
                         autofocus: false,
                         controller: emailEditingController,
                         keyboardType: TextInputType.emailAddress,
@@ -168,8 +166,7 @@ class _ProfilPageState extends State<ProfilPage> {
                           }
                           return null;
                         },
-                        onSaved: (value) {
-                        },
+                        onSaved: (value) {},
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                           labelText: 'Enter your email adress',
@@ -182,10 +179,9 @@ class _ProfilPageState extends State<ProfilPage> {
                           ),
                         ),
                       ),
-                    SizedBox(height: 45),
-                    editButton,
-                  ]
-                ),
+                      SizedBox(height: 45),
+                      editButton,
+                    ]),
               ),
             ),
           ),
@@ -195,8 +191,6 @@ class _ProfilPageState extends State<ProfilPage> {
   }
 
   void edit() async {
-    
-
     final _auth = FirebaseAuth.instance;
     User? user = _auth.currentUser;
     UserModel userModel = UserModel();

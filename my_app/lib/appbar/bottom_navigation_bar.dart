@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/screens/home_screen.dart';
 import 'package:my_app/screens/favoris_screen.dart';
+import 'package:my_app/screens/home_screen.dart';
 import 'package:my_app/screens/menu_screen.dart';
 import 'package:my_app/screens/recettes_screen.dart';
 
@@ -31,7 +31,7 @@ class _NavigationState extends State<Navigation> {
         showUnselectedLabels: false,
         currentIndex: currentIndex = currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
-        items: const <BottomNavigationBarItem> [
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Accueil',
@@ -42,12 +42,12 @@ class _NavigationState extends State<Navigation> {
             label: 'Favoris',
             backgroundColor: Colors.green,
           ),
-            BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.receipt_long),
             label: 'Recettes',
             backgroundColor: Colors.orange,
-          ), 
-            BottomNavigationBarItem(
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.app_registration_rounded),
             label: 'Menu',
             backgroundColor: Colors.red,

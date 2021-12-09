@@ -2,13 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
-import 'package:my_app/screens/favoris_screen.dart';
-import 'package:my_app/screens/favoris_name_screen.dart';
 
 class LikeButtonWidget extends StatefulWidget {
   final DocumentReference reference;
 
   const LikeButtonWidget({Key? key, required this.reference}) : super(key: key);
+
   @override
   _LikeButtonWidgetState createState() => _LikeButtonWidgetState();
 }
@@ -29,10 +28,11 @@ class _LikeButtonWidgetState extends State<LikeButtonWidget> {
         this.isliked = false;
       setState(() {});
     });
-  super.initState();
+    super.initState();
   }
 
   bool isliked = false;
+
   @override
   Widget build(BuildContext context) {
     final double size = 40;
@@ -48,8 +48,8 @@ class _LikeButtonWidgetState extends State<LikeButtonWidget> {
           return Icon(Icons.favorite, color: color, size: size);
         },
         onTap: (isliked) async {
-          this.isliked = isliked;
-          if (isliked) {
+          this.isliked = !isliked;
+          if (!isliked) {
             FirebaseFirestore.instance
                 .collection('users')
                 .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -64,7 +64,7 @@ class _LikeButtonWidgetState extends State<LikeButtonWidget> {
               'favoris': FieldValue.arrayRemove([widget.reference])
             });
           }
-          return isliked;
+          return !isliked;
         },
       ),
     );

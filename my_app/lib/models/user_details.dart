@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 
 class UserDetails {
   String? displayName;
@@ -14,6 +14,7 @@ class UserDetails {
     photoURL = json["photoUrl"];
     email = json["email"];
   }
+
   Map<String, dynamic> toJson() {
     //object - data
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -23,5 +24,4 @@ class UserDetails {
 
     return data;
   }
-
 }

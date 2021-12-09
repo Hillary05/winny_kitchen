@@ -16,22 +16,22 @@ class OnboardModel {
   });
 }
 
-List<OnboardModel> screens = <OnboardModel> [
-  OnboardModel (
+List<OnboardModel> screens = <OnboardModel>[
+  OnboardModel(
     img: "images/one.png",
     text: "Discover",
     desc: "Discover the different flavors of cooking",
     bg: Colors.white,
     button: Color(0XFF4756DF),
   ),
-  OnboardModel (
+  OnboardModel(
     img: "images/four.png",
     text: "Learn",
     desc: "Learn to cook different and delicious dishes",
     bg: Colors.white,
     button: Color(0XFF4756DF),
   ),
-  OnboardModel (
+  OnboardModel(
     img: "images/Cooking.png",
     text: "Enjoy",
     desc: "Have fun !",

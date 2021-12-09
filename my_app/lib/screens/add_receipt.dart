@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class AddNote extends StatefulWidget {
   @override
@@ -67,7 +67,7 @@ class _AddNoteState extends State<AddNote> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            child: Padding(
+              child: Padding(
             padding: const EdgeInsets.all(36.0),
             child: Form(
               key: _formKey,

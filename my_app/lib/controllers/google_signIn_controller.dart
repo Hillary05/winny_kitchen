@@ -10,16 +10,16 @@ class GoogleSignInController with ChangeNotifier {
   login() async {
     this.googleSignInAccount = await _googleSignIn.signIn();
 
-  //call
+    //call
     notifyListeners();
   }
 
   //function to logout
-  logout() async {  
+  logout() async {
     //empty the value after logout
     this.googleSignInAccount = await _googleSignIn.signOut();
 
     //call
-      notifyListeners();
+    notifyListeners();
   }
 }

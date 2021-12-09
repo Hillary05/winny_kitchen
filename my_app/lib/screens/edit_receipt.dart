@@ -2,14 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'add_receipt.dart';
 
 class EditReceipt extends StatefulWidget {
   final Map<String, dynamic> recipe;
 
   final List recipes;
 
-  const EditReceipt({Key? key, required this.recipe, required this.recipes}) : super(key: key);
+  const EditReceipt({Key? key, required this.recipe, required this.recipes})
+      : super(key: key);
+
   @override
   _EditReceiptState createState() => _EditReceiptState();
 }
@@ -79,7 +80,7 @@ class _EditReceiptState extends State<EditReceipt> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            child: Padding(
+              child: Padding(
             padding: const EdgeInsets.all(36.0),
             child: Form(
               key: _formKey,
@@ -102,8 +103,8 @@ class _EditReceiptState extends State<EditReceipt> {
                     onSaved: (value) {},
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                      enabledBorder: UnderlineInputBorder(      
-                        borderSide: BorderSide.none,   
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -127,8 +128,8 @@ class _EditReceiptState extends State<EditReceipt> {
                     onSaved: (value) {},
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                        enabledBorder: UnderlineInputBorder(      
-                          borderSide: BorderSide.none,   
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -152,8 +153,8 @@ class _EditReceiptState extends State<EditReceipt> {
                     onSaved: (value) {},
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                        enabledBorder: UnderlineInputBorder(      
-                          borderSide: BorderSide.none,   
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -176,8 +177,7 @@ class _EditReceiptState extends State<EditReceipt> {
     String title = titleEditingController.text;
     String ingredients = ingredientsEditingController.text;
     String receipt = receiptEditingController.text;
-    int indexOldElem = widget.recipes.indexOf(widget.recipe); 
-    
+    int indexOldElem = widget.recipes.indexOf(widget.recipe);
 
     List updatedList = widget.recipes;
     updatedList[indexOldElem] = {

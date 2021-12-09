@@ -1,21 +1,19 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_app/appbar/bottom_navigation_bar.dart';
 import 'package:my_app/controllers/login_controller.dart';
-import 'package:my_app/screens/home_screen.dart';
 import 'package:my_app/screens/login_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:my_app/screens/onboard_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 int? isviewed;
 
-Future<void> main() async{
+Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(statusBarColor: Colors.transparent),
   );
@@ -38,19 +36,17 @@ class _MyFirstPageState extends State<MyFirstPage> {
 
   @override
   void initState() {
-   subscription = FirebaseAuth.instance
-  .authStateChanges()
-  .listen((User? user) {
-    if (user == null) {
-      loggedIn = false;
-      print('User is currently signed out!');
-    } else {
-      loggedIn = true;
-      print('User is signed in!');
-    }
-    setState(() {
+    subscription =
+        FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        loggedIn = false;
+        print('User is currently signed out!');
+      } else {
+        loggedIn = true;
+        print('User is signed in!');
+      }
+      setState(() {});
     });
-  });
     super.initState();
   }
 
@@ -72,19 +68,21 @@ class _MyFirstPageState extends State<MyFirstPage> {
         theme: new ThemeData(scaffoldBackgroundColor: const Color(0xFF000000)),
         title: 'my_app',
         debugShowCheckedModeBanner: false,
-       home: isviewed != 0 ? OnBoard() : redirect(),
-             ),
-           );
-         }
-       
-         redirect() {
-           switch (loggedIn) {
-             case true:
-              return Navigation();
-             case false:
-              return LoginScreen();
-             default:
-              return Scaffold(backgroundColor: Colors.white, body: Center(child: CircularProgressIndicator()));
-           }
-         }
+        home: isviewed != 0 ? OnBoard() : redirect(),
+      ),
+    );
+  }
+
+  redirect() {
+    switch (loggedIn) {
+      case true:
+        return Navigation();
+      case false:
+        return LoginScreen();
+      default:
+        return Scaffold(
+            backgroundColor: Colors.white,
+            body: Center(child: CircularProgressIndicator()));
+    }
+  }
 }

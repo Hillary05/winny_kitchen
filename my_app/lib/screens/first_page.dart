@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'login_screen.dart';
 import 'registration_screen.dart';
 
-class FirstPage extends StatefulWidget {
+class AuthPage extends StatefulWidget {
   @override
-  _FirstPageState createState() => _FirstPageState();
+  _AuthPageState createState() => _AuthPageState();
 }
 
-class _FirstPageState extends State<FirstPage> {
- @override
+class _AuthPageState extends State<AuthPage> {
+  @override
   Widget build(BuildContext context) {
-
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
@@ -19,8 +19,8 @@ class _FirstPageState extends State<FirstPage> {
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
-          Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => LoginScreen()));
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => LoginScreen()));
         },
         child: Text(
           'Login',
@@ -43,7 +43,7 @@ class _FirstPageState extends State<FirstPage> {
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
           Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => RegistrationScreen()));
+              MaterialPageRoute(builder: (context) => RegistrationScreen()));
         },
         child: Text(
           'Register',
@@ -58,7 +58,7 @@ class _FirstPageState extends State<FirstPage> {
     );
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade50,//Color(0xFFEDECF2),
+      backgroundColor: Colors.blueGrey.shade50, //Color(0xFFEDECF2),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -69,39 +69,37 @@ class _FirstPageState extends State<FirstPage> {
             child: Padding(
               padding: const EdgeInsets.all(36.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 300,
-                    child: Image.asset(
-                      "images/iiimage.png",
-                       fit: BoxFit.contain,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 300,
+                      child: Image.asset(
+                        "images/iiimage.png",
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 45),
-                  Text(
-                    "Discover simple and\neasy-to-make recipes",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF8C746A),
-                      fontSize: 32,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "Poppins"
+                    SizedBox(height: 45),
+                    Text(
+                      "Discover simple and\neasy-to-make recipes",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Color(0xFF8C746A),
+                          fontSize: 32,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Poppins"),
                     ),
-                  ),
-                  SizedBox(height:45),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(child: loginButton),
-                      SizedBox(width:30),
-                      Expanded(child: registerButton),
-                    ],
-                  ),
-                  SizedBox(height: 45),
-                ]
-              ),
+                    SizedBox(height: 45),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(child: loginButton),
+                        SizedBox(width: 30),
+                        Expanded(child: registerButton),
+                      ],
+                    ),
+                    SizedBox(height: 45),
+                  ]),
             ),
           ),
         ),

@@ -1,9 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_app/screens/registration_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_app/appbar/bottom_navigation_bar.dart';
-import 'package:my_app/models/user_model.dart';
+import 'package:my_app/screens/registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

@@ -5,7 +5,11 @@ import 'package:my_app/widget/like_button_widget.dart';
 
 class AllReceipt extends StatefulWidget {
   final ModelRecipe recipe;
-  const AllReceipt({Key? key, required this.recipe}) : super(key: key);
+  final bool canLike;
+
+  const AllReceipt({Key? key, required this.recipe, required this.canLike})
+      : super(key: key);
+
   @override
   _AllReceiptState createState() => _AllReceiptState();
 }
@@ -15,14 +19,14 @@ class _AllReceiptState extends State<AllReceipt> {
 
   @override
   Widget build(BuildContext context) {
-   // double height = MediaQuery.of(context).size.height;
+    // double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xFFEDECF2),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
         title: Text(
-          "Crêpes Farcies",
+          "Recette",
           textAlign: TextAlign.center,
           style: GoogleFonts.raleway(
             textStyle: Theme.of(context).textTheme.headline4,
@@ -113,7 +117,10 @@ class _AllReceiptState extends State<AllReceipt> {
               SizedBox(
                 height: 20,
               ),
-              LikeButtonWidget(reference: widget.recipe.reference,),
+              if (widget.canLike)
+                LikeButtonWidget(
+                  reference: widget.recipe.reference,
+                ),
             ],
           ),
         ),

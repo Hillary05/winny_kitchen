@@ -61,20 +61,24 @@ class _EntreesPageState extends State<EntreesPage> {
               ),
               StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('recettes').where('type', isEqualTo: 'Entrée')
+                    .collection('recettes')
+                    .where('type', isEqualTo: 'Entrée')
                     .snapshots(),
-                builder:
-                  (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>  snapshots) {
-                    if (!snapshots.hasData || snapshots.data == null)
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    //print(snapshots.data!.docs);
-                    List <ModelRecipe> list = List.generate(snapshots.data!.docs.length, (index) {
-                      QueryDocumentSnapshot<Map<String, dynamic>> doc = snapshots.data!.docs[index];
-                      return ModelRecipe.fromQueryDocumentSnapshot(doc);
-                    });
-                    return GridView.builder(
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                        snapshots) {
+                  if (!snapshots.hasData || snapshots.data == null)
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  //print(snapshots.data!.docs);
+                  List<ModelRecipe> list =
+                      List.generate(snapshots.data!.docs.length, (index) {
+                    QueryDocumentSnapshot<Map<String, dynamic>> doc =
+                        snapshots.data!.docs[index];
+                    return ModelRecipe.fromQueryDocumentSnapshot(doc);
+                  });
+                  return GridView.builder(
                       physics: ScrollPhysics(),
                       shrinkWrap: true,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -83,9 +87,8 @@ class _EntreesPageState extends State<EntreesPage> {
                       ),
                       itemCount: list.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return recipeItem(list[index]);
-                    }
-                  );
+                        return RecipeItem(recipe: list[index]);
+                      });
                 },
               ),
             ],
@@ -94,14 +97,42 @@ class _EntreesPageState extends State<EntreesPage> {
       ),
     );
   }
+}
 
-  Widget recipeItem(ModelRecipe recipe) {
+class CustomShape extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    double height = size.height;
+    double width = size.width;
+    path.lineTo(0, height - 100);
+    path.quadraticBezierTo(width / 2, height, width, height - 100);
+    path.lineTo(width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
+  }
+}
+
+class RecipeItem extends StatelessWidget {
+  final ModelRecipe recipe;
+  final bool canLike;
+  const RecipeItem({Key? key, required this.recipe, this.canLike = true}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         GestureDetector(
           onTap: () {
-             Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AllReceipt(recipe: recipe)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AllReceipt(recipe: recipe, canLike: canLike)));
           },
           child: Container(
             height: 100.0,
@@ -131,24 +162,5 @@ class _EntreesPageState extends State<EntreesPage> {
         ),
       ],
     );
-  }
-}
-
-class CustomShape extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    double height = size.height;
-    double width = size.width;
-    path.lineTo(0, height - 100);
-    path.quadraticBezierTo(width / 2, height, width, height - 100);
-    path.lineTo(width, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
   }
 }

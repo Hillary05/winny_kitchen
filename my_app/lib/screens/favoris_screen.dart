@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/appbar/bottom_navigation_bar.dart';
+import 'package:my_app/meal/entr%C3%A9es_screen.dart';
+import 'package:my_app/models/user_receipt.dart';
 
 class FavorisPage extends StatefulWidget {
   @override
@@ -8,6 +11,28 @@ class FavorisPage extends StatefulWidget {
 }
 
 class _FavorisPageState extends State<FavorisPage> {
+  final List<ModelRecipe> recipes = [];
+
+  @override
+  void initState() {
+    Future<DocumentSnapshot<Map<String, dynamic>>> futureSnapshots =
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .get();
+    futureSnapshots.then((snapshots) async {
+      List favorisList = (snapshots.data())!['favoris'] ?? [];
+      for (DocumentReference reference in favorisList) {
+        DocumentSnapshot snapshot = await reference.get();
+        ModelRecipe recipe = ModelRecipe.fromQueryDocumentSnapshot(snapshot);
+        recipes.add(recipe);
+        setState(() {});
+        print(recipe.title);
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,14 +47,27 @@ class _FavorisPageState extends State<FavorisPage> {
             textStyle: Theme.of(context).textTheme.headline4,
             fontSize: 12,
             fontWeight: FontWeight.w700,
-            //fontStyle: FontStyle.italic,
           ),
         ),
         elevation: 0,
-        leading: IconButton(
+        /*leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
+          },
+        ),*/
+      ),
+      body: SingleChildScrollView(
+        child: GridView.builder(
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: (.75),
+          ),
+          itemCount: recipes.length,
+          itemBuilder: (BuildContext context, int index) {
+            return RecipeItem(recipe: recipes[index], canLike: false,);
           },
         ),
       ),

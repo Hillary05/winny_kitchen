@@ -1,10 +1,9 @@
 import "package:flutter/material.dart";
+import 'package:my_app/constant.dart';
 import 'package:my_app/models/onboard_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:my_app/constant.dart';
-import 'login_screen.dart';
-import 'first_page.dart';
 
+import 'first_page.dart';
 
 class OnBoard extends StatefulWidget {
   @override
@@ -40,16 +39,19 @@ class _OnBoardState extends State<OnBoard> {
     return Scaffold(
       backgroundColor: currentIndex % 2 == 0 ? kwhite : kwhitef,
       appBar: AppBar(
-       backgroundColor: currentIndex % 2 == 0 ? kwhite : kwhitef,
+        backgroundColor: currentIndex % 2 == 0 ? kwhite : kwhitef,
         elevation: 0,
         actions: [
           TextButton(
             onPressed: () {
               _storeOnboardInfo();
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => FirstPage()));
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => AuthPage()));
             },
-            child: Text('Skip', style: TextStyle(color: Colors.black),),
+            child: Text(
+              'Skip',
+              style: TextStyle(color: Colors.black),
+            ),
           )
         ],
       ),
@@ -85,9 +87,7 @@ class _OnBoardState extends State<OnBoard> {
                             width: currentIndex == index ? 25 : 8,
                             height: 8.0,
                             decoration: BoxDecoration(
-                              color: currentIndex == index
-                                ? kbrown
-                                : kbrown300,
+                              color: currentIndex == index ? kbrown : kbrown300,
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
@@ -118,15 +118,15 @@ class _OnBoardState extends State<OnBoard> {
                 InkWell(
                   onTap: () async {
                     print(index);
-                      if (index == screens.length - 1) {
-                        await _storeOnboardInfo();
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => FirstPage()));
-                      }
+                    if (index == screens.length - 1) {
+                      await _storeOnboardInfo();
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => AuthPage()));
+                    }
 
-                      _pageController.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.bounceIn,
+                    _pageController.nextPage(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.bounceIn,
                     );
                   },
                   child: Container(
@@ -138,7 +138,9 @@ class _OnBoardState extends State<OnBoard> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('Next', style: TextStyle(fontSize: 16.0, color: Colors.black),
+                        Text(
+                          'Next',
+                          style: TextStyle(fontSize: 16.0, color: Colors.black),
                         ),
                         SizedBox(width: 15),
                         Icon(

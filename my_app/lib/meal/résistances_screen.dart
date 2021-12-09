@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/receipts/Allreceipts_screen.dart';
+import 'package:my_app/meal/entr%C3%A9es_screen.dart';
 import 'package:my_app/models/user_receipt.dart';
 
 class ResistancesPage extends StatefulWidget {
@@ -10,7 +10,7 @@ class ResistancesPage extends StatefulWidget {
 }
 
 class _ResistancesPageState extends State<ResistancesPage> {
-   @override
+  @override
   Widget build(BuildContext context) {
     //double? defaultSize = SizeConfig.defaultSize;
     return Scaffold(
@@ -61,20 +61,24 @@ class _ResistancesPageState extends State<ResistancesPage> {
               ),
               StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('recettes').where('type', isEqualTo: 'résistance')
+                    .collection('recettes')
+                    .where('type', isEqualTo: 'résistance')
                     .snapshots(),
-                builder:
-                  (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>  snapshots) {
-                    if (!snapshots.hasData || snapshots.data == null)
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    //print(snapshots.data!.docs);
-                    List <ModelRecipe> list = List.generate(snapshots.data!.docs.length, (index) {
-                      QueryDocumentSnapshot<Map<String, dynamic>> doc = snapshots.data!.docs[index];
-                      return ModelRecipe.fromQueryDocumentSnapshot(doc);
-                    });
-                    return GridView.builder(
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                        snapshots) {
+                  if (!snapshots.hasData || snapshots.data == null)
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  //print(snapshots.data!.docs);
+                  List<ModelRecipe> list =
+                      List.generate(snapshots.data!.docs.length, (index) {
+                    QueryDocumentSnapshot<Map<String, dynamic>> doc =
+                        snapshots.data!.docs[index];
+                    return ModelRecipe.fromQueryDocumentSnapshot(doc);
+                  });
+                  return GridView.builder(
                       physics: ScrollPhysics(),
                       shrinkWrap: true,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -83,53 +87,14 @@ class _ResistancesPageState extends State<ResistancesPage> {
                       ),
                       itemCount: list.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return recipeItem(list[index]);
-                    }
-                  );
+                        return RecipeItem(recipe: list[index]);
+                      });
                 },
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget recipeItem(ModelRecipe recipe) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-             Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AllReceipt(recipe: recipe)));
-          },
-          child: Container(
-            height: 100.0,
-            width: 100.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(300.0)),
-              image: DecorationImage(
-                  image: AssetImage("images/crêpes.png"), fit: BoxFit.cover),
-              color: Colors.black38,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 10.0,
-                  offset: Offset(0.0, 5.0),
-                )
-              ],
-            ),
-          ),
-        ),
-        Text(
-          recipe.title,
-          style: TextStyle(
-            fontSize: 16.0,
-            fontFamily: 'Raleway',
-            color: Colors.black87,
-          ),
-        ),
-      ],
     );
   }
 }

@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_app/appbar/bottom_navigation_bar.dart';
+import 'package:my_app/controllers/login_controller.dart';
 import 'package:my_app/models/user_model.dart';
 //import 'package:my_app/screens/login_page.dart';
 import 'package:provider/provider.dart';
-import 'package:my_app/controllers/login_controller.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
