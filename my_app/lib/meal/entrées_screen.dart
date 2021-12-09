@@ -23,7 +23,7 @@ class _EntreesPageState extends State<EntreesPage> {
           textAlign: TextAlign.center,
           style: GoogleFonts.raleway(
             textStyle: Theme.of(context).textTheme.headline4,
-            fontSize: 24,
+            fontSize: 16,
             fontWeight: FontWeight.w700,
           ),
         ),

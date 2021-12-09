@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/appbar/bottom_navigation_bar.dart';
+import 'package:my_app/screens/first_page.dart';
 import 'package:my_app/screens/profil_screen.dart';
 import 'package:my_app/size_config.dart';
 
@@ -124,7 +125,10 @@ class _MenuPageState extends State<MenuPage> {
               // ),
               InkWell(
                 onTap: () async {
-                  await FirebaseAuth.instance.signOut();
+                  await FirebaseAuth.instance.signOut().then((value) => {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => AuthPage()))
+                      });
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(

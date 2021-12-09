@@ -23,7 +23,7 @@ class _DessertsPageState extends State<DessertsPage> {
           textAlign: TextAlign.center,
           style: GoogleFonts.raleway(
             textStyle: Theme.of(context).textTheme.headline4,
-            fontSize: 12,
+            fontSize: 16,
             fontWeight: FontWeight.w700,
           ),
         ),

@@ -82,15 +82,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   // editing Controller
   final TextEditingController firstNameEditingController =
-      new TextEditingController(text: 'sean');
+      new TextEditingController();
   final TextEditingController secondNameEditingController =
-      new TextEditingController(text: 'hillary');
+      new TextEditingController();
   final TextEditingController emailEditingController =
-      new TextEditingController(text: 'kerekouhillary@gmail.com');
+      new TextEditingController();
   final TextEditingController passwordEditingController =
-      new TextEditingController(text: '333333');
+      new TextEditingController();
   final TextEditingController confirmPasswordEditingController =
-      new TextEditingController(text: '333333');
+      new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -234,7 +234,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-        labelText: 'Enter your password',
+        labelText: 'Confirm your password',
         border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         prefixIcon: Icon(
