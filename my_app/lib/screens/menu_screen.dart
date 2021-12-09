@@ -32,13 +32,13 @@ class _MenuPageState extends State<MenuPage> {
           ),
         ),
         elevation: 0,
-        leading: IconButton(
+        /*leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => Navigation()));
           },
-        ),
+        ),*/
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -126,7 +126,7 @@ class _MenuPageState extends State<MenuPage> {
               InkWell(
                 onTap: () async {
                   await FirebaseAuth.instance.signOut().then((value) => {
-                        Navigator.push(context,
+                        Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) => AuthPage()))
                       });
                 },
